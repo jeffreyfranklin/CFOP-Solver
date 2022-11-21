@@ -1,2 +1,7 @@
 # CFOP-Solver
  
+This program is made to solve the Rubik's Cube using an algorithm that roughly resembles the speedcubing method CFOP. It is programmed entirely in C++ and has no visuals. The input and output is purely done in the terminal.
+
+To input your cube, the program will prompt you to enter the colours of the tiles of your cube one by one based on which side it tells you to input. The orientation that you are holding the cube from is important for this step. You must be holding the cube with the white face on top and the face that you are inputting in front. For the white face, you should have blue on top and for the yellow face you should have green on top. Now that you know how to hold the cube properly. The next step will be to input the first letter of the colours one by one starting with the top left tile of the face and moving around the face in a clockwise order (omitting the center).
+
+After you have successfully entered the configuration of your cube, the program will begin to solve it and output the moves required to solve the cube using standard notation along with the CFOP step that they are a part of. The program will also output the time it took to solve the cube (average is around 12ms) and the amount of moves it took to solve the cube (average is around 106 including certain moves that are redundant).
