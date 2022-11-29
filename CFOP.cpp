@@ -22,7 +22,7 @@ uint8_t GetByte(uint64_t bytes, int index) {
     return bytes >> 8 * index;
 }
 
-static inline uint64_t rotl64 (uint64_t n, unsigned int c) {
+static inline uint64_t rotr64 (uint64_t n, unsigned int c) {
     const unsigned int mask = (CHAR_BIT*sizeof(n) - 1);  // assumes width is a power of 2.
 
     // assert ( (c<=mask) &&"rotate by type width or more");
@@ -30,7 +30,7 @@ static inline uint64_t rotl64 (uint64_t n, unsigned int c) {
     return (n<<c) | (n>>( (-c)&mask ));
 }
 
-static inline uint64_t rotr64 (uint64_t n, unsigned int c) {
+static inline uint64_t rotl64 (uint64_t n, unsigned int c) {
     const unsigned int mask = (CHAR_BIT*sizeof(n) - 1);
 
     // assert ( (c<=mask) &&"rotate by type width or more");
@@ -45,7 +45,7 @@ static inline uint64_t rotr64 (uint64_t n, unsigned int c) {
 void F() {
     cout<<"F ";
     moveCount++;
-    frontFace = rotl64(frontFace, 16);
+    frontFace = rotr64(frontFace, 16);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -78,7 +78,7 @@ void F() {
 void FPrime() {
     cout<<"F' ";
     moveCount++;
-    frontFace = rotr64(frontFace, 16);
+    frontFace = rotl64(frontFace, 16);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -111,7 +111,7 @@ void FPrime() {
 void F2() {
     cout<<"F2 ";
     moveCount++;
-    frontFace = rotl64(frontFace, 32);
+    frontFace = rotr64(frontFace, 32);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -148,7 +148,7 @@ void F2() {
 void B() {
     cout<<"B ";
     moveCount++;
-    backFace = rotl64(backFace, 16);
+    backFace = rotr64(backFace, 16);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -181,7 +181,7 @@ void B() {
 void BPrime() {
     cout<<"B' ";
     moveCount++;
-    backFace = rotr64(backFace, 16);
+    backFace = rotl64(backFace, 16);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -214,7 +214,7 @@ void BPrime() {
 void B2() {
     cout<<"B2 ";
     moveCount++;
-    backFace = rotl64(backFace, 32);
+    backFace = rotr64(backFace, 32);
     uint8_t leftBytes[3], rightBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -251,7 +251,7 @@ void B2() {
 void L() {
     cout<<"L ";
     moveCount++;
-    leftFace = rotl64(leftFace, 16);
+    leftFace = rotr64(leftFace, 16);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -284,7 +284,7 @@ void L() {
 void LPrime() {
     cout<<"L' ";
     moveCount++;
-    leftFace = rotr64(leftFace, 16);
+    leftFace = rotl64(leftFace, 16);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -317,7 +317,7 @@ void LPrime() {
 void L2() {
     cout<<"L2 ";
     moveCount++;
-    leftFace = rotl64(leftFace, 32);
+    leftFace = rotr64(leftFace, 32);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 6; i < 3; ++i, ++j) {
@@ -354,7 +354,7 @@ void L2() {
 void R() {
     cout<<"R ";
     moveCount++;
-    rightFace = rotl64(rightFace, 16);
+    rightFace = rotr64(rightFace, 16);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -387,7 +387,7 @@ void R() {
 void RPrime() {
     cout<<"R' ";
     moveCount++;
-    rightFace = rotr64(rightFace, 16);
+    rightFace = rotl64(rightFace, 16);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -420,7 +420,7 @@ void RPrime() {
 void R2() {
     cout<<"R2 ";
     moveCount++;
-    rightFace = rotl64(rightFace, 32);
+    rightFace = rotr64(rightFace, 32);
     uint8_t frontBytes[3], backBytes[3], upBytes[3], downBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 2; i < 3; ++i, ++j) {
@@ -457,7 +457,7 @@ void R2() {
 void U() {
     cout<<"U ";
     moveCount++;
-    upFace = rotl64(upFace, 16);
+    upFace = rotr64(upFace, 16);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 0; i < 3; ++i, ++j) {
@@ -490,7 +490,7 @@ void U() {
 void UPrime() {
     cout<<"U' ";
     moveCount++;
-    upFace = rotr64(upFace, 16);
+    upFace = rotl64(upFace, 16);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 0; i < 3; ++i, ++j) {
@@ -523,7 +523,7 @@ void UPrime() {
 void U2() {
     cout<<"U2 ";
     moveCount++;
-    upFace = rotl64(upFace, 32);
+    upFace = rotr64(upFace, 32);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 0; i < 3; ++i, ++j) {
@@ -560,7 +560,7 @@ void U2() {
 void D() {
     cout<<"D ";
     moveCount++;
-    downFace = rotl64(downFace, 16);
+    downFace = rotr64(downFace, 16);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 4; i < 3; ++i, ++j) {
@@ -593,7 +593,7 @@ void D() {
 void DPrime() {
     cout<<"D' ";
     moveCount++;
-    downFace = rotr64(downFace, 16);
+    downFace = rotl64(downFace, 16);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 4; i < 3; ++i, ++j) {
@@ -626,7 +626,7 @@ void DPrime() {
 void D2() {
     cout<<"D2 ";
     moveCount++;
-    downFace = rotl64(downFace, 32);
+    downFace = rotr64(downFace, 32);
     uint8_t frontBytes[3], backBytes[3], leftBytes[3], rightBytes[3];
     // Stores affected bytes
     for(int i = 0, j = 4; i < 3; ++i, ++j) {
